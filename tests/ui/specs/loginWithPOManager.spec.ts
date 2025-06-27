@@ -1,11 +1,9 @@
 import {test} from '@playwright/test';
-import { LoginPage } from '../pages/loginPage.ts';
-import { HomePage } from '../pages/homePage.ts'; 
+import { POManager } from '../pages/poManager.ts';   
 import jsonData from '../../../testData/testUsers.json';
 import tsData from '../../../testData/testUsers.ts';
 //===================Variables==================
-let loginPage: LoginPage;
-let homePage: HomePage;
+let poManager: POManager;
 
 // json format -> string -> parse to ts object
 const parsedJsonData = JSON.parse(JSON.stringify(jsonData))
@@ -18,9 +16,8 @@ test.beforeAll('these actions run before all tests', async () => {
 })
 
 test.beforeEach('these actions run before each tests', async ({page}, testinfo) => {
-    loginPage = new LoginPage(page);
-    homePage = new HomePage(page);
-    await loginPage.oPenPortal();
+    poManager = new POManager(page);
+    await poManager.getLoginPage().oPenPortal();
     console.log('starting test: ' + testinfo.title);
 })
 
@@ -35,13 +32,13 @@ test.afterEach('these actions run after each tests', async ({}, testinfo) => {
 test.describe('login tests',  () => {
 
 test('valid login', async ({page}) =>  {
-        await loginPage.login(tsData.username, tsData.correctpassword);
-        await homePage.verifyValidLoginMsg();
+        await poManager.getLoginPage().login(tsData.username, tsData.correctpassword);
+        await poManager.getHomePage().verifyValidLoginMsg();
 });
 
 test('invalid login', async({page}) => {
-    await loginPage.login(tsData.username, tsData.incorrectpassword);
-    await homePage.verifyInvalidLoginMsg();
+    await poManager.getLoginPage().login(tsData.username, tsData.incorrectpassword);
+    await poManager.getHomePage().verifyInvalidLoginMsg();
 });
 
 });

@@ -1,16 +1,16 @@
-import { type Page } from "@playwright/test"; 
+import { expect, type Locator, type Page } from "@playwright/test"; 
 import { LoginPage } from "./loginPage";
-import { Homepage } from "./homePage";
+import { HomePage } from "./homePage";
 
 export class POManager {
     private readonly page: Page;
     private readonly loginPage: LoginPage;
-    private readonly homePage: Homepage;
+    private readonly homePage: HomePage;
     //===================Constructors===============
     constructor(page: Page){
         this.page = page;
         this.loginPage = new LoginPage(this.page);
-        this.homePage = new Homepage(this.page);
+        this.homePage = new HomePage(this.page);
     }
     //===================Actions====================
     getLoginPage(){

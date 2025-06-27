@@ -4,14 +4,12 @@ import jsonData from '../../../testData/testUsers.json';
 import tsData from '../../../testData/testUsers.ts';
 //===================Variables==================
 let poManager: POManager;
+
 // json format -> string -> parse to ts object
 const parsedJsonData = JSON.parse(JSON.stringify(jsonData))
 //===================Hooks=====================
 
 // test.describe.configure({mode: 'serial'}); // run tests in serial mode
-
- // discard storage state for login tests as I need to login each case
-test.use({ storageState: {cookies:[] , origins:[]} });
 
 test.beforeAll('these actions run before all tests', async () => {
     console.log("this runs before all tests");
@@ -35,13 +33,11 @@ test.describe('login tests',  () => {
 
 test('valid login', async ({page}) =>  {
         await poManager.getLoginPage().login(tsData.username, tsData.correctpassword);
-        await page.pause();
         await poManager.getHomePage().verifyValidLoginMsg();
 });
 
 test('invalid login', async({page}) => {
     await poManager.getLoginPage().login(tsData.username, tsData.incorrectpassword);
-    await page.pause();
     await poManager.getHomePage().verifyInvalidLoginMsg();
 });
 

@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from "@playwright/test";  // locators (type Locator), Actions (type Page) & validations (expect)
 
-export class Homepage {
+export class HomePage {
     //===================Locators===================
     readonly page: Page;
     readonly msgAfterLogin: Locator;

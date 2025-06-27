@@ -1,5 +1,5 @@
 import { chromium , firefox, FullConfig } from "@playwright/test";
-import { POManager } from "../../ui/pages/poManageer";
+import { POManager } from "../../ui/pages/poManager";
 import testdata from "../../../testData/testUsers.ts";
 
 async function globalSetup(config: FullConfig) {

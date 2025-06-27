@@ -1,5 +1,5 @@
 import {test} from '@playwright/test';
-import { POManager } from '../pages/poManageer.ts';   
+import { POManager } from '../pages/poManager.ts';   
 import jsonData from '../../../testData/testUsers.json';
 import tsData from '../../../testData/testUsers.ts';
 //===================Variables==================

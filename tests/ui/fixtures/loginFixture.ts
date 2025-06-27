@@ -1,10 +1,9 @@
 import { test as base } from '@playwright/test'; 
-import { POManager } from '../pages/poManageer.ts';
-import { Homepage } from '../pages/homePage.ts';
-
+import { POManager } from '../pages/poManager.ts';
+import { HomePage } from '../pages/homePage.ts';
 type myFixtures = {
     poManager: POManager;
-    homePage: Homepage;
+    homePage: HomePage;
 }
 
 export const test = base.extend<myFixtures>({
@@ -15,7 +14,7 @@ export const test = base.extend<myFixtures>({
     },
 
     homePage: async ({ page }, use) => {
-        const homePage = new Homepage(page);
+        const homePage = new HomePage(page);
         use(homePage);
     }
 
